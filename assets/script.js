@@ -2,7 +2,6 @@
 
 $(document).ready(function(){
 
- 
 
     $(".btn").on("click", function(){
         var eventVal = $(this).siblings(".eventVal").val();
@@ -13,6 +12,52 @@ $(document).ready(function(){
     localStorage.setItem(time, eventVal);
         
     });
+
+    function hourUpdater() {
+        // get current number of hours
+        var currentHour = moment().hours();
+
+// loop over time blocks
+$(".time-block").each(function() {
+    var blockHour = parseInt($(this).attr("id").split("-")[1]);
+
+    // Audit if time has passed
+    if (blockHour < currentHour) {
+        $(this).addClass(".bg-warning");
+      } 
+      else if (blockHour === currentHour) {
+        $(this).removeClass("bg-secondary");
+        $(this).addClass("bg-success");
+      } 
+      else {
+        $(this).removeClass("bg-secondary");
+        $(this).removeClass("bg-success");
+        $(this).addClass("bg-light");
+      }
+ // load any saved data from localStorage
+ 
+ $("#hour-9 .description").val(localStorage.getItem("hour-9"));
+ $("#hour-10 .description").val(localStorage.getItem("hour-10"));
+ $("#hour-11 .description").val(localStorage.getItem("hour-11"));
+ $("#hour-12 .description").val(localStorage.getItem("hour-12"));
+ $("#hour-13 .description").val(localStorage.getItem("hour-13"));
+ $("#hour-14 .description").val(localStorage.getItem("hour-14"));
+ $("#hour-15 .description").val(localStorage.getItem("hour-15"));
+ $("#hour-16 .description").val(localStorage.getItem("hour-16"));
+      
+    });
+}
+
+
+hourUpdater();
+
+
+  $("#currentDay").text(moment().format("dddd, MMMM Do"));
+
+
+
+
+});
 
 
 
@@ -40,5 +85,3 @@ $(document).ready(function(){
 //     $(taskEl).addClass("list-group-item-warning");
 //   }
     // current day on page displayed
-  $("#currentDay").text(moment().format("dddd, MMMM Do"));
-});
