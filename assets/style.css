@@ -25,6 +25,13 @@ textarea{
   white-space: pre-wrap;
 }
 
+div h5 {
+  margin: auto;
+  width: 10%;
+  padding: 10px;
+  
+}
+
 .time-block{
   text-align: center;
   border-radius: 15px;
@@ -53,7 +60,7 @@ textarea{
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: #0c980c;
   color: white;
 }
 
